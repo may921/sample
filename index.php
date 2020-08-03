@@ -1,7 +1,5 @@
 <?php
 $errors = [];
-
-//DB接続情報
 if($_POST){
     $id = null;
     $name = $_POST["name"];
