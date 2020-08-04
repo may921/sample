@@ -1,5 +1,7 @@
 <?php
 $errors = [];
+
+//DB接続情報
 if($_POST){
     $id = null;
     $name = $_POST["name"];
@@ -51,6 +53,14 @@ $pdo = new PDO(
 //$regist = $pdo->prepare("SELECT * FROM post");
 $regist = $pdo->prepare("SELECT * FROM post order by created_at DESC limit 20");
 $regist->execute();
+
+//アクセスカウンター
+$filename = 'counter.txt';
+$fp = fopen($filename, 'r');
+$accessCounter = fgets($fp);
+echo $accessCounter.'<br>';
+
+
 
 
 ?>
