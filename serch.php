@@ -1,5 +1,5 @@
 <?php
-$errors = [];
+
 
 //DB接続情報
 if($_POST){
@@ -54,24 +54,6 @@ $pdo = new PDO(
 $regist = $pdo->prepare("SELECT * FROM post order by created_at DESC limit 20");
 $regist->execute();
 
-//アクセスカウンター
-$filename = 'counter.txt';
-//ファイルを開く
-$fp = fopen($filename, 'r+');
-//ファイルの中身を取得
-$accessCounter = fgets($fp);
-//カウントをふやす
-$accessCounter++;
-//書き込み位置を先頭にする
-fseek($fp, 0);
-//書き込み
-fwrite($fp, $accessCounter);
-//ファイルをロック
-flock($fp, LOCK_UN);
-//ファイルをとじる
-fclose($fp);
-echo "あなたは".$accessCounter."人目の訪問者です".'<br>';
-
 
 
 
@@ -79,8 +61,8 @@ echo "あなたは".$accessCounter."人目の訪問者です".'<br>';
 
 <!DOCTYPE html>
 <meta charset="UTF-8">
-<title>簡易掲示板</title>
-<h1>簡易掲示板</h1>
+<title>投稿内容検索</title>
+<h1>投稿内容検索</h1>
 <section>
 	<h2>新規投稿</h2>
 	<div id="error"><?php foreach($errors as $error){echo $error.'<br>';}?></div>
@@ -89,8 +71,6 @@ echo "あなたは".$accessCounter."人目の訪問者です".'<br>';
 	投稿内容:<input type="text" name="contents" value=""><br>
 	<button type="submit">投稿</button>
 	</form>
-
-	<button onclick="location.href='serch.php'">検索</button>
 </section>
 
 
