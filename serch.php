@@ -1,6 +1,6 @@
 <?php
 
-//検索されたときだけ処理をする
+//検索されたときだけ処理をする。
 if($_POST){
 
 	$serchText = $_POST["serchText"];
@@ -18,6 +18,7 @@ if($_POST){
 	//SQL文を実行して、結果を$serchResultに代入する。
 	$serchResult = $pdo->query("SELECT * FROM post WHERE contents LIKE '%".$_POST["serchText"]."%'"); 
 	$regist->execute();
+
 
 
 
